@@ -11,7 +11,7 @@ namespace praktikod2
     {
         public HtmlElement Parse(string html)
         {
-           
+
             var parts = Regex.Split(html, @"(<[^>]+>)")
                 .Select(part => part.Trim())
                 .Where(part => !string.IsNullOrWhiteSpace(part))
@@ -31,11 +31,9 @@ namespace praktikod2
                     string closingName = Regex.Match(
                         part, @"^</\s*([^\s>]+)").Groups[1].Value.ToLowerInvariant();
 
-                    // The opening tag of an unknown tag is skipped, so its closing tag must not go up a level
                     if (!HtmlHelper.Instance.HtmlTags.Contains(closingName))
                         continue;
 
-                    // </html> marks the end of the document
                     if (closingName == "html")
                         break;
 

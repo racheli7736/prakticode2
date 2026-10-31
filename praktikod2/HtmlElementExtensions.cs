@@ -45,21 +45,17 @@ namespace praktikod2
             Selector selector,
             HashSet<HtmlElement> results)
         {
-            // מחפשים בכל הצאצאים של האלמנט הנוכחי
             foreach (HtmlElement element in root.Descendants())
             {
-                // האם האלמנט מתאים לסלקטור?
                 if (!IsMatch(element, selector))
                     continue;
 
-                // אם זה הסלקטור האחרון, מצאנו תוצאה
                 if (selector.Child == null)
                 {
                     results.Add(element);
                 }
                 else
                 {
-                    // ממשיכים לחפש את הסלקטור הבא
                     foreach (HtmlElement child in element.Children)
                     {
                         FindRecursive(child, selector.Child, results);
